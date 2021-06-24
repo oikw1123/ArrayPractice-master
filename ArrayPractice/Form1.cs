@@ -14,18 +14,21 @@ namespace ArrayPractice
     {
         static Random rand = new Random();
 
-        int[] vx = new int[100];
-        int[] vy = new int[100];
-        Label[] labels = new Label[100];
+        int  LabelMax = 10;
+        int[] vx = new int[LabelMax];
+        int[] vy = new int[LabelMax];
+        Label[] labels = new Label[LabelMax];
+
+        int score = 100;
 
         public Form1()
         {
             InitializeComponent();
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < LabelMax; i++)
             {
-                vx[i] = rand.Next(-20, 21);
-                vy[i] = rand.Next(-20, 21);
+                vx[i] = rand.Next(-20, 20);
+                vy[i] = rand.Next(-20, 20);
 
                 labels[i] = new Label();
                 labels[i].AutoSize = true;
@@ -50,7 +53,7 @@ namespace ArrayPractice
             Point fpos = PointToClient(MousePosition);
 
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < LabelMax; i++)
             {
                 labels[i].Left += vx[i];
                 labels[i].Top += vy[i];
@@ -78,8 +81,11 @@ namespace ArrayPractice
                && (fpos.Y < labels[i].Bottom))
                     label1.Visible = false;
             }
+            
           
         }
+
+        
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -89,6 +95,23 @@ namespace ArrayPractice
         private void label2_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            for(int i=0;i<LabelMax;i++)
+            {
+                if(i==2)
+           {
+                    continue;
+                
+                }
+                if(i==5)
+                {
+                    break;
+                }
+                MessageBox.Show("" + i);
+            }
         }
     }
 }
