@@ -16,6 +16,10 @@ namespace ArrayPractice
 
         int vx = rand.Next(-20, 21);
         int vy = rand.Next(-20, 21);
+        int vx2 = rand.Next(-20, 21);
+        int vy2 = rand.Next(-20, 21);
+        int vx3 = rand.Next(-20, 21);
+        int vy3 = rand.Next(-20, 21);
         int score = 100;
 
         public Form1()
@@ -29,15 +33,16 @@ namespace ArrayPractice
         private void timer1_Tick(object sender, EventArgs e)
         {
             Point spos = MousePosition;
-            Point fpos = PointToClient(spos);
-            label2.Left = fpos.X - label2.Width / 2;
-            label2.Top = fpos.Y - label2.Height / 2;
-            label2.Text = $"[fpos.X},{fpos.Y}";
+          
             score--;
             scoreLabel.Text = $"Score {score:000}";
 
             label1.Left += vx;
             label1.Top += vy;
+            label2.Left += vx2;
+            label2.Top += vy2;
+            label3.Left += vx3;
+            label3.Top += vy3;
 
             if (label1.Left < 0)
             {
@@ -55,6 +60,38 @@ namespace ArrayPractice
             {
                 vy = -Math.Abs(vy);
             }
+            if (label2.Left < 0)
+            {
+                vx2 = Math.Abs(vx2);
+            }
+            if (label2.Top < 0)
+            {
+                vy2 = Math.Abs(vy2);
+            }
+            if (label2.Right > ClientSize.Width)
+            {
+                vx2 = -Math.Abs(vx2);
+            }
+            if (label2.Bottom > ClientSize.Height)
+            {
+                vy2 = -Math.Abs(vy2);
+            }
+            if (label3.Left < 0)
+            {
+                vx3 = Math.Abs(vx3);
+            }
+            if (label3.Top < 0)
+            {
+                vy3 = Math.Abs(vy3);
+            }
+            if (label3.Right > ClientSize.Width)
+            {
+                vx3 = -Math.Abs(vx3);
+            }
+            if (label3.Bottom > ClientSize.Height)
+            {
+                vy3 = -Math.Abs(vy3);
+            }
 
             Point fpos = PointToClient(MousePosition);
 
@@ -62,14 +99,31 @@ namespace ArrayPractice
                 && (fpos.X < label1.Right)
                 && (fpos.Y >= label1.Top)
                 && (fpos.Y < label1.Bottom))
-            {
-                timer1.Enabled = false;
+                label1.Enabled = false;
+
+            if ((fpos.X >= label2.Left)
+                    && (fpos.X < label2.Right)
+                    && (fpos.Y >= label2.Top)
+                    && (fpos.Y < label2.Bottom))
+                label2.Enabled = false;
+
+            if ((fpos.X >= label3.Left)
+                        && (fpos.X < label3.Right)
+                        && (fpos.Y >= label3.Top)
+                        && (fpos.Y < label3.Bottom))
+                    {
+                label3.Enabled = false;
             }
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
             timer1.Enabled=false;
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
