@@ -28,6 +28,11 @@ namespace ArrayPractice
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            Point spos = MousePosition;
+            Point fpos = PointToClient(spos);
+            label2.Left = fpos.X - label2.Width / 2;
+            label2.Top = fpos.Y - label2.Height / 2;
+            label2.Text = $"[fpos.X},{fpos.Y}";
             score--;
             scoreLabel.Text = $"Score {score:000}";
 
@@ -60,6 +65,11 @@ namespace ArrayPractice
             {
                 timer1.Enabled = false;
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled=false;
         }
     }
 }
