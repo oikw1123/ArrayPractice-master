@@ -114,6 +114,14 @@ namespace ArrayPractice
                     {
                 label3.Enabled = false;
             }
+
+            if ((label1.Visible == false)
+               && (label2.Visible == false)
+               && (label3.Visible == false)
+               )
+            {
+
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
